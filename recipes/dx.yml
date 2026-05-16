@@ -1,0 +1,27 @@
+modules:
+  - type: dnf
+    repos:
+      cleanup: true
+      files:
+        - vscodium.repo
+      keys:
+        - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
+    install:
+      packages:
+        - codium # VSCodium, alternative to VSCode
+        - neovim
+    group-install: # Install virtualization tooling
+      with-optional: true
+      packages:
+        - virtualization
+  - type: default-flatpaks
+    configurations:
+      - scope: system
+        notify: true
+        repo:
+          url: https://flathub.org/repo/flathub.flatpakrepo
+          title: Flathub (system)
+        install:
+          - io.podman_desktop.PodmanDesktop # Podman desktop
+          - me.iepure.devtoolbox
+          #- com.github.marhkb.Pods

@@ -11,3 +11,4 @@
   - VSCodium instead of VSCode
   - `neovim` preinstalled
   - Helpful flatpaks such as Podman Desktop
+  - Nerd fonts

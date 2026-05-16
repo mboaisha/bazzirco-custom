@@ -1,0 +1,55 @@
+# Here be personal tweaks to the base image.
+modules:
+  - type: dnf
+    repos:
+      copr:
+        - mboaisha/assortment
+    install:
+      packages:
+        - bat # cat, but better
+        - lavat # Lava lamp
+        - nemo # File manager
+        - dolphin # file manager
+        - kitty # terminal emulator
+        - ghostty # terminal emulator
+        - alacritty # terminal emulator
+  - type: fonts # Assorted fonts
+    fonts:
+      nerd-fonts:
+        - FiraCode
+        - FiraMono
+        - GeistMono
+        - Hack
+        - Inconsolata
+        - Iosevka
+        - IosevkaTerm
+        - IosevkaTermSlab
+        - JetBrainsMono
+        - Lilex
+        - Mononoki
+        - RobotoMono
+        - ZedMono
+  - type: default-flatpaks # Common flatpaks for me
+    configurations:
+      - scope: system
+        notify: true
+        repo:
+          url: https://flathub.org/repo/flathub.flatpakrepo
+          title: Flathub (system)
+        install:
+          - org.remmina.Remmina # Remote desktop client
+          - dev.vencord.Vesktop # Discord client
+          - com.sublimehq.SublimeText # Sublime text editor
+          - com.spotify.Client # Spotify client (music)
+          - com.dropbox.Client # Dropbox cloud storage service
+          - com.bitwarden.desktop # Bitwarden client
+          - com.github.xournalpp.xournalpp # Xournal++ (PDF editing)
+          - com.google.EarthPro # Google Earth
+          - md.obsidian.Obsidian # Obsidian MD
+          - it.mijorus.gearlever # Gear Lever, for app images
+          - com.github.tchx84.Flatseal # Flatseal for flatpak permissions management
+          - org.videolan.VLC # VLC for video
+          - org.localsend.localsend_app # LocalSend (local network file sharing)
+          - org.chromium.Chromium # Chromium  browser
+          - org.chromium.Chromium.Codecs # . . . codecs and such
+          - com.bitwarden.desktop # Password manager, client for bitwarden / vaultwarden

@@ -10,6 +10,22 @@ modules:
       packages:
         - codium # VSCodium, alternative to VSCode
         - neovim
+        - podman-tui
+        - podman-machine
+        - waypipe
+        - cockpit
+        - ansible
+        - ccache
+        - restic
+        - rclone
+        - flatpak-builder
+        - usbmuxd
+        - git-subtree
+        - tshark
+        - wireshark
+        - nmap
+        - mtr # Better traceroute
+        - sshd
     group-install: # Install virtualization tooling
       with-optional: true
       packages:
@@ -17,7 +33,7 @@ modules:
   - type: default-flatpaks
     configurations:
       - scope: system
-        notify: true
+        notify: false
         repo:
           url: https://flathub.org/repo/flathub.flatpakrepo
           title: Flathub (system)

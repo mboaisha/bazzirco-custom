@@ -31,7 +31,7 @@ modules:
   - type: default-flatpaks # Common flatpaks for me
     configurations:
       - scope: system
-        notify: true
+        notify: false
         repo:
           url: https://flathub.org/repo/flathub.flatpakrepo
           title: Flathub (system)

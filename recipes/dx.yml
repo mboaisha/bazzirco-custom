@@ -41,3 +41,6 @@ modules:
           - io.podman_desktop.PodmanDesktop # Podman desktop
           - me.iepure.devtoolbox
           #- com.github.marhkb.Pods
+  - type: systemd
+    system:
+      enabled: cockpit.socket

@@ -26,6 +26,8 @@ modules:
         - nmap
         - mtr # Better traceroute
         - sshd
+        - zsh # Altarnative shell
+        - zsh-autosuggestions
     group-install: # Install virtualization tooling
       with-optional: true
       packages:

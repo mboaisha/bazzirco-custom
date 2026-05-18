@@ -43,4 +43,5 @@ modules:
           #- com.github.marhkb.Pods
   - type: systemd
     system:
-      enabled: cockpit.socket
+      enabled: 
+        - cockpit.socket

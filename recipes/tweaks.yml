@@ -31,9 +31,7 @@ modules:
         - IosevkaTermSlab
         - JetBrainsMono
         - Lilex
-        - Mononoki
         - RobotoMono
-        - ZedMono
         - BigBlueTerminal
         - AtkinsonHyperlegibleMono
   - type: default-flatpaks # Common flatpaks for me

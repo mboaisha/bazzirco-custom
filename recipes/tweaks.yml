@@ -28,6 +28,7 @@ modules:
         - Mononoki
         - RobotoMono
         - ZedMono
+        - BigBlueTerm
   - type: default-flatpaks # Common flatpaks for me
     configurations:
       - scope: system

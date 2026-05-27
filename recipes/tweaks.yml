@@ -4,6 +4,8 @@ modules:
     repos:
       copr:
         - mboaisha/assortment
+      files:
+        - https://raw.githubusercontent.com/terrapkg/subatomic-repos/main/terra.repo
     install:
       packages:
         - bat # cat, but better
@@ -12,6 +14,10 @@ modules:
         - dolphin # file manager
         - kitty # terminal emulator
         - alacritty # terminal emulator
+        - coolercontrol
+        - liquidctl
+        - openrgb
+        #- openrgb-udev-rules
   - type: fonts # Assorted fonts
     fonts:
       nerd-fonts:

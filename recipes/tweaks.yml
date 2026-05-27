@@ -29,6 +29,7 @@ modules:
         - RobotoMono
         - ZedMono
         - BigBlueTerminal
+        - AtkinsonHyperlegibleMono
   - type: default-flatpaks # Common flatpaks for me
     configurations:
       - scope: system

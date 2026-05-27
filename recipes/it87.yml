@@ -7,7 +7,7 @@ modules:
             dnf install -y git kernel-devel-${KERNEL_VERSION} gcc make && \
             git clone https://github.com/frankcrawford/it87 /tmp/it87 && \
             cd /tmp/it87 && \
-            make KERNELDIR=/usr/lib/modules/${KERNEL_VERSION}/build && \
+            make KDIR=/usr/lib/modules/${KERNEL_VERSION}/build && \
             install -Dm644 it87.ko /usr/lib/modules/${KERNEL_VERSION}/extra/it87.ko && \
             depmod -a ${KERNEL_VERSION} && \
             echo "it87" > /etc/modules-load.d/it87.conf && \

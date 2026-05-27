@@ -15,3 +15,4 @@ modules:
   - type: signing
   - from-file: dx.yml # DX tools
   - from-file: tweaks.yml
+  - from-file: it87.yml # it87 kernel module

@@ -1,0 +1,16 @@
+modules:
+  - type: containerfile
+    snippets:
+      - |
+        RUN --mount=type=cache,target=/var/cache/dnf \
+            KERNEL_VERSION=$(rpm -q kernel --qf '%{VERSION}-%{RELEASE}.%{ARCH}') && \
+            dnf install -y git kernel-devel-${KERNEL_VERSION} gcc make && \
+            git clone https://github.com/frankcrawford/it87 /tmp/it87 && \
+            cd /tmp/it87 && \
+            make KERNELDIR=/usr/lib/modules/${KERNEL_VERSION}/build && \
+            install -Dm644 it87.ko /usr/lib/modules/${KERNEL_VERSION}/extra/it87.ko && \
+            depmod -a ${KERNEL_VERSION} && \
+            echo "it87" > /etc/modules-load.d/it87.conf && \
+            rm -rf /tmp/it87 && \
+            dnf remove -y git kernel-devel-${KERNEL_VERSION} gcc make && \
+            dnf clean all

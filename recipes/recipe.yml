@@ -13,6 +13,6 @@ image-version: latest # latest is also supported if you want new updates ASAP
 # you can include multiple instances of the same module
 modules:
   - type: signing
+  - from-file: it87.yml # it87 kernel module
   - from-file: dx.yml # DX tools
   - from-file: tweaks.yml
-  - from-file: it87.yml # it87 kernel module

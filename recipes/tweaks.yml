@@ -46,7 +46,6 @@ modules:
         install:
           - org.remmina.Remmina # Remote desktop client
           - dev.vencord.Vesktop # Discord client
-          - com.sublimehq.SublimeText # Sublime text editor
           - com.spotify.Client # Spotify client (music)
           - com.dropbox.Client # Dropbox cloud storage service
           - com.bitwarden.desktop # Bitwarden client

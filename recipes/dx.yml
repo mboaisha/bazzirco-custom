@@ -26,6 +26,7 @@ modules:
         - nmap
         - mtr # Better traceroute
         - sshd
+        - cargo # Rust package manager
         #- zsh # Altarnative shell
         #- zsh-autosuggestions
     group-install: # Install virtualization tooling

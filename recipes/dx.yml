@@ -27,6 +27,7 @@ modules:
         - mtr # Better traceroute
         - sshd
         - cargo # Rust package manager
+        - go # Golang for some TUIs
         #- zsh # Altarnative shell
         #- zsh-autosuggestions
     group-install: # Install virtualization tooling

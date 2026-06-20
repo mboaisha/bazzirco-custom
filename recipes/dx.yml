@@ -28,6 +28,7 @@ modules:
         - sshd
         - cargo # Rust package manager
         - go # Golang for some TUIs
+        - iperf3
         #- zsh # Altarnative shell
         #- zsh-autosuggestions
     group-install: # Install virtualization tooling

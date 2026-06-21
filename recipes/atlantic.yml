@@ -1,0 +1,28 @@
+modules:
+  # Stage the Marvell/Aquantia "atlantic" driver source (TP-Link TX401 / AQC107)
+  # into the build. Lands at /usr/src/atlantic-2.5.16.0.tar.gz
+  - type: files
+    files:
+      - source: atlantic-src
+        destination: /usr/src
+
+  # Build atlantic.ko against this image's kernel and install it, replacing the
+  # in-tree atlantic module (which drops the TX401 link under load). Same
+  # kernel-devel-at-build-time pattern as it87.yml; module left uncompressed to
+  # match it87.ko and the in-tree modules on this system.
+  - type: containerfile
+    snippets:
+      - |
+        RUN --mount=type=cache,target=/var/cache/dnf \
+            KERNEL_VERSION=$(rpm -q kernel --qf '%{VERSION}-%{RELEASE}.%{ARCH}') && \
+            dnf install -y kernel-devel-${KERNEL_VERSION} gcc make elfutils-libelf-devel && \
+            tar -xzf /usr/src/atlantic-2.5.16.0.tar.gz -C /usr/src/ && \
+            make -C /usr/src/atlantic-2.5.16.0 KDIR=/usr/src/kernels/${KERNEL_VERSION} && \
+            install -Dm644 /usr/src/atlantic-2.5.16.0/atlantic.ko \
+                /usr/lib/modules/${KERNEL_VERSION}/extra/atlantic/atlantic.ko && \
+            mkdir -p /usr/lib/depmod.d && \
+            printf 'override atlantic * extra/atlantic\n' > /usr/lib/depmod.d/zz-atlantic.conf && \
+            depmod -a ${KERNEL_VERSION} && \
+            rm -rf /usr/src/atlantic-2.5.16.0 /usr/src/atlantic-2.5.16.0.tar.gz && \
+            dnf remove -y kernel-devel-${KERNEL_VERSION} gcc make elfutils-libelf-devel && \
+            dnf clean all

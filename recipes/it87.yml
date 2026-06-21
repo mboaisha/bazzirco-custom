@@ -1,16 +1,26 @@
 modules:
+  # Build the it87 hwmon kernel module.
+  #
+  # The OGC kernel's headers are NOT in any dnf repo — they're published only in
+  # the ublue akmods image — so we COPY kernel-devel from there instead of
+  # `dnf install kernel-devel-${VER}` (which fails: "No match for argument").
   - type: containerfile
     snippets:
+      - COPY --from=ghcr.io/ublue-os/akmods:ogc-44 /kernel-rpms /tmp/akmods-kernel-rpms
       - |
         RUN --mount=type=cache,target=/var/cache/dnf \
             KERNEL_VERSION=$(rpm -q kernel --qf '%{VERSION}-%{RELEASE}.%{ARCH}') && \
-            dnf install -y git kernel-devel-${KERNEL_VERSION} gcc make && \
+            if [ ! -f /tmp/akmods-kernel-rpms/kernel-devel-${KERNEL_VERSION}.rpm ]; then \
+                echo "akmods image has no kernel-devel-${KERNEL_VERSION}; pin the COPY tag to ogc-44-${KERNEL_VERSION}"; \
+                ls /tmp/akmods-kernel-rpms; exit 1; \
+            fi && \
+            dnf install -y /tmp/akmods-kernel-rpms/kernel-devel-${KERNEL_VERSION}.rpm git gcc make && \
             git clone https://github.com/frankcrawford/it87 /tmp/it87 && \
             cd /tmp/it87 && \
             make TARGET=${KERNEL_VERSION} && \
             install -Dm644 it87.ko /usr/lib/modules/${KERNEL_VERSION}/extra/it87.ko && \
             depmod -a ${KERNEL_VERSION} && \
             echo "it87" > /etc/modules-load.d/it87.conf && \
-            rm -rf /tmp/it87 && \
-            dnf remove -y git kernel-devel-${KERNEL_VERSION} gcc make && \
+            rm -rf /tmp/it87 /tmp/akmods-kernel-rpms && \
+            dnf remove -y kernel-devel git gcc make && \
             dnf clean all

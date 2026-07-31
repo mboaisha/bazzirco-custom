@@ -32,7 +32,7 @@ jobs:
       # we check out ourselves (instead of letting the blue-build action do it)
       # so the akmods pin below survives into the build
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           persist-credentials: false
 

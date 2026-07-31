@@ -29,6 +29,29 @@ jobs:
           # !! Add your recipes here
           - recipe.yml
     steps:
+      # we check out ourselves (instead of letting the blue-build action do it)
+      # so the akmods pin below survives into the build
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Pin akmods tag to base kernel
+        run: |
+          set -euo pipefail
+          KVER=$(skopeo inspect --no-tags docker://ghcr.io/bazzirco/bazzirco-nvidia:latest \
+            | jq -r '.Labels["ostree.linux"]')
+          echo "Base kernel: ${KVER}"
+
+          # Fail fast if akmods hasn't published a matching pinned tag
+          skopeo inspect --no-tags \
+            docker://ghcr.io/ublue-os/akmods:ogc-44-${KVER} > /dev/null
+
+          # Rewrite the floating tag in all recipe files
+          sed -i "s|akmods:ogc-44 |akmods:ogc-44-${KVER} |g" recipes/*.yml
+
+          grep -rn "akmods:ogc-44" recipes/
+
       # the build is fully handled by the reusable github action
       - name: Build Custom Image
         uses: blue-build/github-action@v1.11
@@ -37,6 +60,7 @@ jobs:
           cosign_private_key: ${{ secrets.SIGNING_SECRET }}
           registry_token: ${{ github.token }}
           pr_event_number: ${{ github.event.number }}
+          skip_checkout: true
 
           # enabled by default, disable if your image is small and you want faster builds
           maximize_build_space: true

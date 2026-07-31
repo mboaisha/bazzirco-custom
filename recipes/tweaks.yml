@@ -10,7 +10,6 @@ modules:
       packages:
         - bat # cat, but better
         - lavat # Lava lamp
-        - nemo # File manager
         - dolphin # file manager
         - kitty # terminal emulator
         - alacritty # terminal emulator

@@ -4,6 +4,7 @@ modules:
     repos:
       copr:
         - mboaisha/assortment
+        - imput/helium
       files:
         - https://raw.githubusercontent.com/terrapkg/subatomic-repos/main/terra.repo
     install:
@@ -16,6 +17,7 @@ modules:
         - coolercontrol
         - liquidctl
         - openrgb
+        - helium-bin # Helium browser
         #- openrgb-udev-rules
   - type: fonts # Assorted fonts
     fonts:

@@ -19,6 +19,9 @@ modules:
         - openrgb
         - helium-bin # Helium browser
         #- openrgb-udev-rules
+        - google-noto-naskh-arabic-fonts
+        - google-noto-sans-arabic-fonts
+        - google-noto-kufi-arabic-fonts
   - type: fonts # Assorted fonts
     fonts:
       nerd-fonts:

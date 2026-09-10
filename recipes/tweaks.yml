@@ -5,6 +5,7 @@ modules:
       copr:
         - mboaisha/assortment
         - imput/helium
+        - avengemedia/danklinux
       files:
         - https://raw.githubusercontent.com/terrapkg/subatomic-repos/main/terra.repo
     install:
@@ -22,6 +23,7 @@ modules:
         - google-noto-naskh-arabic-fonts
         - google-noto-sans-arabic-fonts
         - google-noto-kufi-arabic-fonts
+        - dankcalendar-git
   - type: fonts # Assorted fonts
     fonts:
       nerd-fonts:

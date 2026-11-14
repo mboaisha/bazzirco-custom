@@ -24,6 +24,7 @@ modules:
         - google-noto-sans-arabic-fonts
         - google-noto-kufi-arabic-fonts
         - dankcalendar-git
+        - adw-gtk3-theme # libadwaita look + dark mode for GTK3 apps
   - type: fonts # Assorted fonts
     fonts:
       nerd-fonts:

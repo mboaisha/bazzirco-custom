@@ -1,9 +1,8 @@
 # Bazzirco-Custom
-- Use `bazzirco-nvidia` as base image and add personal tweaks
-  - `bazzirco` is an attempt to combine [Bazzite](https://github.com/ublue-os/bazzite) and [Zirconium](https://github.com/zirconium-dev/zirconium) 
-- Instead of using `bazzirco-dx-nvidia`, you could use `bazzirco-nvidia` as a base image then use Bluebuild to roll your own "DX" tooling.
-- Experimental and highly personalized. Might add couple of things to suit my pre-built PC that has a terrible motherboard.
-  - Will release a more "generic" or "general use" image at some point.
+
+## Updated: Nov. 13 2026
+- Migrated base image from `ghcr.io/bazzirco/bazzirco-nvidia` to `ghcr.io/zirconium-dev/zirconium-jackrabbit-nvidia:latest`
+
 
 ## What does this image have?
 - DX Tooling
@@ -11,4 +10,7 @@
   - VSCodium instead of VSCode
   - `neovim` preinstalled
   - Helpful flatpaks such as Podman Desktop
-  - Nerd fonts
+- Nerd fonts
+- Helium Browser
+- Dux Calendar (FKA Dank Calendar)
+- Arabic fonts
